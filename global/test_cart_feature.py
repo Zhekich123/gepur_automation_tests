@@ -64,19 +64,25 @@
     Then user can see that cart is empty  '''
 
 
-''' And user can click "Обрати все" button
-    And user can see that checkboxes to the right of the product is selected
-    And 
-    And 
-    And 
-    And 
-    And 
-    And 
-    And 
-    And 
-    And 
-    Then  '''
 
 
 '''Проверка на добавление всех / частично товаров в вишлист'''
+
+''' Given when user add three products into a cart
+    When user click one checkbox to the right of the product
+    And user can see that checkbox to the right of the product is selected
+    And user can click "Обране" button
+    And user can see the message "Ви дійсно хочете перемістити 1 товар до обраного?"
+    And user can click "Ні" button
+    And user can see that selected product is still in the cart
+    And user can click "Обране" button
+    And user can see the message "Ви дійсно хочете перемістити 1 товар до обраного?"
+    And user can click "Так" button
+    And user can see that product added into a wishlist
+    And user click "Обрати все" button
+    And user can see that checkboxes to the right of the product is selected
+    And user can click "Обране" button
+    And user can see the message "Ви дійсно хочете перемістити 2 товара до обраного?"
+    And user can click "Так" button
+    Then user can see that products added into a wishlist '''
 
