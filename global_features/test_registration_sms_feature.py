@@ -27,7 +27,7 @@ def header_registration(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://next.gepur.org/uk")
 
-    page.click("//div[@class='modal-subscribe-close-button']")
+    # page.click("//div[@class='modal-subscribe-close-button']")
     page.click("//a[@class='service_button account_icon']")
     page.click("//span[text()='Реєстрація']")
     page.fill("//input[@name='fio']", user_random)
@@ -82,7 +82,7 @@ def sidebar_registration(playwright: Playwright):
     page = context.new_page()
     page.goto("https://next.gepur.org/uk")
 
-    page.click("//div[@class='modal-subscribe-close-button']")
+    # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")
     page.click("//span[text()='Особистий кабінет']")
     page.click("//span[text()='Реєстрація']")
@@ -99,6 +99,7 @@ def sidebar_registration(playwright: Playwright):
     page.hover("//a[@class='service_button account_icon']")
     locator = page.locator("//div[@class='drop_down']")
     expect(locator).to_be_visible()
+
 
     page.hover(".styles_accordion__1nYPJ")
     page.wait_for_timeout(1000)

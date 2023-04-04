@@ -17,7 +17,7 @@ def header_login(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://next.gepur.org/uk")
 
-    page.click("//div[@class='modal-subscribe-close-button']")
+    # page.click("//div[@class='modal-subscribe-close-button']")
     page.click("//a[@class='service_button account_icon']")
     page.fill("//input[@name='phoneOrEmail']", "test14366accounnt@gmail.com")
     page.click("//span[text()='Далі']")
@@ -87,7 +87,7 @@ def sidebar_login(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://next.gepur.org/uk")
 
-    page.click("//div[@class='modal-subscribe-close-button']")
+    # page.click("//div[@class='modal-subscribe-close-button']")
     page.locator(".styles_accordion__1nYPJ").click()
     page.click("//span[text()='Особистий кабінет']")
     page.fill("//input[@name='phoneOrEmail']", "test14366accounnt@gmail.com")
