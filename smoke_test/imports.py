@@ -16,3 +16,4 @@ import os
 from allure_commons.types import AttachmentType
 from allure_commons._allure import attach
 from playwright.sync_api import expect
+

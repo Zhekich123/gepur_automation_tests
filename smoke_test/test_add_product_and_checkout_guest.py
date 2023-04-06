@@ -18,6 +18,7 @@ from imports import *
 def shopping_cart(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
+    # context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
     page.goto("https://gepur.com/uk")
     # page.click("//div[@class='modal-subscribe-close-button']")
@@ -27,15 +28,16 @@ def shopping_cart(playwright: Playwright) -> None:
     page.wait_for_timeout(1000)
     page.click("//span[text()='Сонцезахисні окуляри']")
 
-    buttons = page.locator("button").all()
-    third_button = buttons[3]
-    third_button.click()
-    page.wait_for_timeout(500)
+    page.click("//span[text()='Купити в 1 клік']")
+    # buttons = page.locator("button").all()
+    # third_button = buttons[3]
+    # third_button.click()
+    # page.wait_for_timeout(500)
 
     field = page.locator("input").all()
     first_field = field[2]
     assert first_field.is_visible()
-    assert first_field.input_value() == '+38 (___) __ __ ___'
+    assert first_field.input_value() == "+38 (___) __ __ ___"
     first_field.fill("+380738983498")
     page.wait_for_timeout(500)
 
@@ -46,6 +48,7 @@ def shopping_cart(playwright: Playwright) -> None:
     expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
+    # context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/trace.zip")
 
 
 def test_choosing_product_and_add_to_cart():
