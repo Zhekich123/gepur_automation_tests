@@ -129,7 +129,7 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     page.wait_for_timeout(2000)
     expect(page.locator("//div[@class='styles_title__14p_x']")).to_be_visible()
 
-    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/trace.zip")
+    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user.zip")
     context.clear_cookies()
 def test_add_product_and_checkout_user():
     with sync_playwright() as playwright:
