@@ -2,18 +2,18 @@ from imports import *
 
 ''' Given user is on the page
     When user click "Account button" on home page
-    And user can see "Телефон або email" field
-    And user can input correct email in "Телефон або email" field
-    And user can see "Введіть пароль" field
-    And user can input correct password in "Введіть пароль" field
-    And user can click "Вхід" button
+    And user can see "phone або email" field
+    And user can input correct email in "phone або email" field
+    And user can see "enter password" field
+    And user can input correct password in "Enter password" field
+    And user can click "Enter" button
     And user can see that he successfully login  
     And user point mouse on sidebar menu on home page
     And user can see "Menu" 
-    And user can click "Аксесуари" button
-    And user can click "Окуляри" button
+    And user can click "Accessories" button
+    And user can click "Glasses" button
     And user can click product 
-    And user click "В кошик" button  
+    And user click "A Cart" button  
     And user can see that product into a cart
     And user can click "Оформити замовлення" button
     And user can see checkout menu
@@ -41,87 +41,96 @@ from imports import *
 def add_product_and_checkout(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
-    context.clear_cookies()
     page.goto("https://gepur.com/uk")
 
     page.click("//a[@class='service_button account_icon']")
     expect(page.locator("//input[@name='phoneOrEmail']")).to_be_visible()
     page.fill("//input[@name='phoneOrEmail']", "test14364accounnt@gmail.com")
-    page.click("//span[text()='Далі']")
+    page.click("//button[@class='btn dark narrow skip-min-width  v-space-bt']")
     expect(page.locator("//input[@type='password']")).to_be_visible()
     page.fill("//input[@type='password']", "Test1234567890")
-    page.click("//span[text()='Вхід']")
+    page.click("//button[@class='btn dark narrow skip-min-width ']")
     page.wait_for_timeout(1000)
     page.hover("//a[@class='service_button account_icon']")
     locator = page.locator("//div[@class='drop_down']")
     expect(locator).to_be_visible()
     page.wait_for_timeout(1000)
 
-    page.hover(".styles_accordion__1nYPJ")
-    expect(page.locator("//div[@class='styles_panel_list__28Ix6']")).to_be_visible()
-    page.wait_for_timeout(1000)
-    page.get_by_role("link", name="Аксесуари", exact=True).click()
-    page.get_by_role("link", name="Окуляри", exact=True).click()
-    page.wait_for_timeout(1000)
-    page.click("//span[text()='Сонцезахисні окуляри']")
 
-    page.click("//span[text()='В кошик']")
+    page.hover(".styles_accordion__1nYPJ")
+    page.wait_for_timeout(1000)
+    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()
+    accessories = categories[7]
+    accessories.click()
+    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()
+    glasses = sub_category[26]
+    glasses.click()
+    page.wait_for_timeout(1000)
+    page.click("//div[@class='styles_product-slider__1D33N styles_expand-4__1CK38']")
+    page.click("//button[@class='btn dark narrow skip-min-width v-space-md']")
     page.wait_for_timeout(1000)
     expect(page.locator("//div[@class='styles_checkbox__lsfu1']")).to_be_visible()
-    page.click("//a[text()='Оформити замовлення']")
+    page.click("//div[@class='button-link-wrapper full']")
     expect(page.locator("// div[ @class ='styles_header-checkout__1L94N']")).to_be_visible()
-    page.wait_for_timeout(3000)
+    page.wait_for_timeout(4000)
 
-    # page.click("//div[text()='Нова Пошта - відділення']")
-    page.click("//div[text()='Інша адреса']")
-    page.wait_for_timeout(1000)
-    # expect(page.locator("//div[text()='Дані отримувача та відділення']")).to_be_visible()
-    expect(page.locator("//div[text()='Змінити адресу']")).to_be_visible()
-    page.click("//span[text()='Додати адресу']")
+    page.click("//span[@class='text']")
 
+    types_of_posts = page.locator("//div[@class='styles_cap__l28lf']").all()
+    new_post = types_of_posts[0]
+    new_post.click()
+    page.click("//div[@class='styles_button__2j2NM styles_change__eWg1L v-space']")
+    expect(page.locator("//div[@class='styles_label__uUxAi']")).to_be_visible()
+    page.click("//button[@class='btn light narrow skip-min-width skip-padding']")
 
     page.fill("//input[@name='name']", "Тестове Замовлення")
     page.fill("//input[@name='phone']", "+380738983498")
-    mista = page.locator("//div[@class='styles_input-wrap__1AQ5I']").all()
-    misto = mista[1]
-    misto.click()
-    page.click("//div[text()='Львів']")
+    cities_button = page.locator("//div[@class='styles_input-wrap__1AQ5I']").all()
+    city_menu = cities_button[1]
+    city_menu.click()
+    cities_list = page.locator("//div[@class='styles_options-item__2vKps']").all()
+    city = cities_list[1]
+    city.click()
 
-
-    viddilenya_all = page.locator("//div[@class='styles_input-wrap__1AQ5I']").all()
-    viddilenya = viddilenya_all[2]
-    viddilenya.click()
+    departaments_button = page.locator("//div[@class='styles_input-wrap__1AQ5I']").all()
+    departaments = departaments_button[2]
+    departaments.click()
     page.wait_for_timeout(1000)
 
-    list_of_departaments = page.locator("//div[@class='styles_list-block__z4mCg v-space']").all()
-    departament = list_of_departaments[0]
+    departaments_list = page.locator("//div[@class='styles_options-item__2vKps']").all()
+    departament = departaments_list[3]
     departament.click()
-    # page.click("//div[text()='Відділення №1: вул. Городоцька, 359']")
-    # page.click("//div[text()='Відділення №21 (до 30 кг на одне місце): просп. Олександрівський, 21']")
-    page.click("//span[text()='Зберегти']")
-    page.click("//span[text()='Підтвердити']")
+
+    page.click("//div[@class='styles_save__oBaAg']")
+    page.click("//button[@class='btn narrow skip-min-width skip-padding v-space']")
     page.wait_for_timeout(1000)
 
-    expect(page.locator("//div[text()='Дані отримувача']")).to_be_visible()
-    page.click("//div[text()='Оплата карткою - онлайн']")
-    page.click("//div[text()='Коментар до замовлення']")
-    expect(page.locator("//div[text()='Додати коментар']")).to_be_visible()
+    expect(page.locator("//div[@class='styles_address__19pO3 v-space']")).to_be_visible()
+    ul_delivery_and_payment_section = page.locator("//ul[@class='styles_menu__2rwEx']").all()
+    select_section = ul_delivery_and_payment_section[1]
+    option = select_section.locator("li:nth-child(3)")
+    option.click()
+
+    page.click("//div[@class='styles_cap__1cn_6']")
+    page.click("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")
+    page.click("//div[@class='styles_label__2RfoE']")
+    expect(page.locator("//div[@class='styles_label__uUxAi']")).to_be_visible()
     page.wait_for_timeout(1000)
     page.fill("//textarea[@maxlength='1000']", "Тестове замовлення, IT відділ, не передзванюйте будь ласка")
     page.wait_for_timeout(1000)
-    page.click("//span[text()='Зберегти']")
+    page.click("//button[@class='btn narrow skip-min-width skip-padding']")
     page.wait_for_timeout(1000)
-    expect(page.locator("//div[text()='Тестове замовлення, IT відділ, не передзванюйте будь ласка']")).to_be_visible()
+    expect(page.locator("//div[@class='styles_comment__7_U0V']")).to_be_visible()
     expect(page.locator("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")).to_be_visible()
     expect(page.locator("//div[@class='styles_summary-content__3IqCA']")).to_be_visible()
-    page.click("//span[text()='Оформити замовлення']")
+    page.click("//button[@class='btn dark narrow skip-min-width skip-padding v-space styles_primary-color__3fKw9']")
     page.wait_for_timeout(2000)
-    # expect(page.locator("//form[@class='payment-form']")).to_be_visible()
-    page.go_back()
     expect(page.locator("//div[@class='styles_title__14p_x']")).to_be_visible()
 
-
+    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/trace.zip")
+    context.clear_cookies()
 def test_add_product_and_checkout_user():
     with sync_playwright() as playwright:
         add_product_and_checkout(playwright)

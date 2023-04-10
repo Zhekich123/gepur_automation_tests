@@ -40,6 +40,7 @@ number2 = random.randint(1000000, 9999999)
 phone_number2 = phone2 + str(number)
 
 
+
 '''Рандомный email'''
 random_email = ''.join(random.choices(string.ascii_letters + string.digits, k=20))
 random_email2 = ''.join(random.choices(string.ascii_letters + string.digits, k=20))

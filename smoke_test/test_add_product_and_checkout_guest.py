@@ -18,37 +18,35 @@ from imports import *
 def shopping_cart(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
-    # context.tracing.start(screenshots=True, snapshots=True, sources=True)
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
-    page.goto("https://gepur.com/uk")
+    page.goto("https://gepur.com/en")
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")
-    page.get_by_role("link", name="Аксесуари", exact=True).click()
-    page.get_by_role("link", name="Окуляри", exact=True).click()
+    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()
+    accessories = categories[7]
+    accessories.click()
+    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()
+    glasses = sub_category[26]
+    glasses.click()
     page.wait_for_timeout(1000)
-    page.click("//span[text()='Сонцезахисні окуляри']")
+    page.click("//div[@class='styles_product-slider__1D33N styles_expand-4__1CK38']")
+    page.click("//button[@class='btn dark narrow skip-min-width v-space-md']")
+    page.wait_for_timeout(1000)
+    expect(page.locator("//div[@class='styles_checkbox__lsfu1']")).to_be_visible()
+    page.click("//button[@class='btn light narrow']")
+    page.wait_for_timeout(1000)
 
-    page.click("//span[text()='Купити в 1 клік']")
-    # buttons = page.locator("button").all()
-    # third_button = buttons[3]
-    # third_button.click()
-    # page.wait_for_timeout(500)
-
-    field = page.locator("input").all()
-    first_field = field[2]
-    assert first_field.is_visible()
-    assert first_field.input_value() == "+38 (___) __ __ ___"
-    first_field.fill("+380738983498")
+    field = page.locator("//input[@name='phone']")
+    assert field.is_visible()
+    assert field.input_value() == "+38 (___) __ __ ___"
+    field.fill("+380142245354")
     page.wait_for_timeout(500)
-
-    buy_button = page.locator("//button[@type='submit']").all()
-    four_button = buy_button[1]
-    four_button.click()
-    page.wait_for_timeout(1000)
+    page.click("//button[@class='btn dark inside-input']")
     expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
-    # context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/trace.zip")
+    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/trace_2.zip")
 
 
 def test_choosing_product_and_add_to_cart():

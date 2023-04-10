@@ -1,5 +1,7 @@
-Command for run test: pytest --alluredir=./gepur_automation_testing/gepur_automation_tests/allure_reports ./gepur_automation_testing/gepur_automation_tests/smoke_test
+Command for run test: pytest -v -s /Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/smoke_test
 
 
-Command to run reports: allure serve ./gepur_automation_testing/gepur_automation_tests/allure_reports
+
+Command to run reports: playwright show-trace /Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/trace.zip
+
 
