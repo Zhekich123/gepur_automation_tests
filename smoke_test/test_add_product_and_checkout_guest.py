@@ -46,7 +46,8 @@ def shopping_cart(playwright: Playwright) -> None:
     expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
-    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user(1 click).zip.zip")
+    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/"
+                              "gepur_automation_tests/test_add_product_and_checkot_user(1 click).zip.zip")
 
 
 def test_choosing_product_and_add_to_cart():
