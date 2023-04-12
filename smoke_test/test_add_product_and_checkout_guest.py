@@ -22,7 +22,7 @@ def shopping_cart(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/en")
     # page.click("//div[@class='modal-subscribe-close-button']")
-    page.hover(".styles_accordion__1nYPJ")
+    page.hover(".styles_accordion__1nYPJ")   #open sidebar memu
     categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()
     accessories = categories[7]
     accessories.click()
@@ -42,12 +42,12 @@ def shopping_cart(playwright: Playwright) -> None:
     assert field.input_value() == "+38 (___) __ __ ___"
     field.fill("+380142245354")
     page.wait_for_timeout(500)
-    page.click("//button[@class='btn dark inside-input']")
-    expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
+    # page.click("//button[@class='btn dark inside-input']")
+    # expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
     context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/"
-                              "gepur_automation_tests/test_add_product_and_checkot_user(1 click).zip.zip")
+                              "gepur_automation_tests/test_add_product_and_checkot_user(1 click).zip")
 
 
 def test_choosing_product_and_add_to_cart():

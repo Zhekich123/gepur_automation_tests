@@ -48,13 +48,7 @@ def search_filter(playwright: Playwright) -> None:
     choose_color = black_color[0]
     expect(choose_color).to_be_visible()
 
-
-
-    # list_black_colors = page.locator("//li[@class='styles_color-item__1kyC6 styles_chernyj__2S5Y9']").all()  # find black color
-    # first_black_color = list_black_colors[0]
-    # expect(first_black_color).to_be_visible()
-    # page.wait_for_timeout(1000)
-
+    # context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_color_filters.zip")
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
         search_filter(playwright)
