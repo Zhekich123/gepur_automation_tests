@@ -14,14 +14,19 @@ from imports import *
 def header_login(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
     page.goto("https://next.gepur.org/uk")
 
+    email = ("test14366accounnt@gmail.com")
+    password = ("Test1234567890")
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user.zip")
+
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.click("//a[@class='service_button account_icon']")
-    page.fill("//input[@name='phoneOrEmail']", "test14366accounnt@gmail.com")
+    page.fill("//input[@name='phoneOrEmail']", email)
     page.click("//span[text()='Далі']")
-    page.fill("//input[@type='password']", "Test1234567890")
+    page.fill("//input[@type='password']", password)
     page.click("//span[text()='Вхід']")
     page.wait_for_timeout(1000)
 
@@ -47,7 +52,7 @@ def header_login(playwright: Playwright) -> None:
 
     page.wait_for_timeout(1500)
     page.click("//a[@class='service_button account_icon']")
-    page.fill("//input[@name='phoneOrEmail']", "380632206190")
+    page.fill("//input[@name='phoneOrEmail']", "380632206190")    # номер телефону
     page.click("//span[text()='Далі']")
     get_sms_data()
     page.fill("//input[@name='codeSMS']", get_code())
@@ -63,6 +68,7 @@ def header_login(playwright: Playwright) -> None:
 
     context.close()
     browser.close()
+    context.tracing.stop(path=report_path)
 
 def test_login_in_header_email_and_sms():
     with sync_playwright() as playwright:
@@ -84,8 +90,13 @@ def test_login_in_header_email_and_sms():
 def sidebar_login(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
     page.goto("https://next.gepur.org/uk")
+
+    email = ("test14366accounnt@gmail.com")
+    password = ("Test1234567890")
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user.zip")
 
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.locator(".styles_accordion__1nYPJ").click()
@@ -140,6 +151,7 @@ def sidebar_login(playwright: Playwright) -> None:
 
     context.close()
     browser.close()
+    context.tracing.stop(path=report_path)
 
 def test_login_in_sidebar_email_and_sms():
     with sync_playwright() as playwright:
