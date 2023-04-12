@@ -8,6 +8,8 @@ def search_filter(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user.zip")
+
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
     categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()  # list of categories
     clothes = categories[1]   # odezhda sub menu
@@ -48,7 +50,7 @@ def search_filter(playwright: Playwright) -> None:
     choose_color = black_color[0]
     expect(choose_color).to_be_visible()
 
-    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_color_filters.zip")
+    context.tracing.stop(path=report_path)
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
         search_filter(playwright)

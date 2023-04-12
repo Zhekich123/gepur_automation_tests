@@ -20,7 +20,11 @@ def shopping_cart(playwright: Playwright) -> None:
     context = browser.new_context()
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
-    page.goto("https://gepur.com/en")
+    page.goto("https://gepur.com/uk")
+
+    phone = ("+380738983498")
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user.zip")
+
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")   #open sidebar memu
     categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()
@@ -40,15 +44,13 @@ def shopping_cart(playwright: Playwright) -> None:
     field = page.locator("//input[@name='phone']")
     assert field.is_visible()
     assert field.input_value() == "+38 (___) __ __ ___"
-    field.fill("+380142245354")
+    field.fill(phone)
     page.wait_for_timeout(500)
     # page.click("//button[@class='btn dark inside-input']")
     # expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
-    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/"
-                              "gepur_automation_tests/test_add_product_and_checkot_user(1 click).zip")
-
+    context.tracing.stop(path=report_path)
 
 def test_choosing_product_and_add_to_cart():
     with sync_playwright() as playwright:
