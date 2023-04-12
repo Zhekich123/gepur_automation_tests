@@ -4,7 +4,7 @@ from imports import *
 def search_filter(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
-    # context.tracing.start(screenshots=True, snapshots=True, sources=True)
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
@@ -48,7 +48,7 @@ def search_filter(playwright: Playwright) -> None:
     choose_color = black_color[0]
     expect(choose_color).to_be_visible()
 
-    # context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_color_filters.zip")
+    context.tracing.stop(path="/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_color_filters.zip")
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
         search_filter(playwright)
