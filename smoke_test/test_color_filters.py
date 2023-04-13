@@ -20,6 +20,7 @@ def search_filter(playwright: Playwright) -> None:
     dresses.click()
     page.wait_for_timeout(1000)
 
+    page.click("//span[@class='text']")  # close pop-up menu
 
     page.evaluate('window.scrollBy(0, 200)')
     page.wait_for_timeout(1000)
@@ -38,8 +39,6 @@ def search_filter(playwright: Playwright) -> None:
     button = show_buttons[1]
     button.click()
     page.wait_for_timeout(1000)
-
-    # page.click("//span[@class='text']")   # close pop-up menu
 
     items = page.locator("//div[@class='catalog-origin__catalog-wrapper']/div").all()
     random_element = random.choice(items)   # choose random product

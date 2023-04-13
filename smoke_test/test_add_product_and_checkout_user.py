@@ -74,6 +74,9 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     glasses = sub_category[26]
     glasses.click()
     page.wait_for_timeout(1000)
+
+    page.click("//span[@class='text']")
+
     page.click("//div[@class='styles_product-slider__1D33N styles_expand-4__1CK38']")
     page.click("//button[@class='btn dark narrow skip-min-width v-space-md']")
     page.wait_for_timeout(1000)
@@ -81,8 +84,6 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     page.click("//div[@class='button-link-wrapper full']")
     expect(page.locator("// div[ @class ='styles_header-checkout__1L94N']")).to_be_visible()
     page.wait_for_timeout(4000)
-
-    page.click("//span[@class='text']")
 
     types_of_posts = page.locator("//div[@class='styles_cap__l28lf']").all()
     new_post = types_of_posts[0]

@@ -20,6 +20,8 @@ def search_filter(playwright: Playwright) -> None:
     shirts.click()
     page.wait_for_timeout(1000)
 
+    page.click("//span[@class='text']")
+
     tags = page.locator("//a[@class='styles_tag-item__2cwSh']").all()
     cotton_tag = tags[1]     # choose tag
     cotton_tag.click()
