@@ -69,7 +69,7 @@ def search_filter(playwright: Playwright) -> None:
     button_xs = buttons_size[0]     # size xs button
     expect(button_xs).to_be_visible()
     expect(button_xs).to_be_enabled()
-    page.wait_for_timeout(4000)
+    page.wait_for_timeout(1000)
 
     context.tracing.stop(path=report_path)
 
