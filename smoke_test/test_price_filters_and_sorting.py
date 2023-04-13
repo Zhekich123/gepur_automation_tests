@@ -43,18 +43,17 @@ def search_filter(playwright: Playwright) -> None:
     page.wait_for_timeout(1000)
 
     page.locator("//div[@class='catalog-origin__catalog-wrapper']/div").nth(0)    # first product
-
-    items_price = page.locator("//div[@class='styles_prices-colors-block__2aAW9 v-space-xsm']").nth(0)
+    page.wait_for_timeout(2000)
+    items_price = page.locator("//div[@class='styles_prices__7vcJI']").nth(0)
     price = items_price.inner_text()        # assertion price
-    expected_price = "1200"
-    # assert price >= expected_price
-    if price >= expected_price:
+    expected_price = "1200 грн"
+    expected_price_value = int(''.join(filter(str.isdigit, expected_price)))
+    actual_price_value = int(''.join(filter(str.isdigit, price)))
+    # assert actual_price_value <= expected_price_value
+    if actual_price_value <= expected_price_value:
         print("\nFilter is working correctly")
     else:
         print("\nFilter is working wrong")
-    page.wait_for_timeout(2000)
-
-
 
     context.tracing.stop(path=report_path)
 def test_search_product_and_filter():
