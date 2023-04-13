@@ -52,7 +52,7 @@ def search_filter(playwright: Playwright) -> None:
         print("\nFilter is working correctly")
     else:
         print("\nFilter is working wrong")
-    page.wait_for_timeout(4000)
+    page.wait_for_timeout(2000)
 
 
 
