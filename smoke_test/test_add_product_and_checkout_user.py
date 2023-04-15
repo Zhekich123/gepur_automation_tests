@@ -71,7 +71,7 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     accessories = categories[7]
     accessories.click()
     sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()
-    glasses = sub_category[26]
+    glasses = sub_category[27]
     glasses.click()
     page.wait_for_timeout(1000)
 
@@ -80,10 +80,10 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     page.click("//div[@class='styles_product-slider__1D33N styles_expand-4__1CK38']")
     page.click("//button[@class='btn dark narrow skip-min-width v-space-md']")
     page.wait_for_timeout(1000)
-    expect(page.locator("//div[@class='styles_checkbox__lsfu1']")).to_be_visible()
+    expect(page.locator("//div[@class='styles_info__3Q3n6']")).to_be_visible()
     page.click("//div[@class='button-link-wrapper full']")
     expect(page.locator("// div[ @class ='styles_header-checkout__1L94N']")).to_be_visible()
-    page.wait_for_timeout(4000)
+    page.wait_for_timeout(3000)
 
     types_of_posts = page.locator("//div[@class='styles_cap__l28lf']").all()
     new_post = types_of_posts[0]
@@ -129,9 +129,9 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     page.wait_for_timeout(1000)
     page.click("//button[@class='btn narrow skip-min-width skip-padding']")
     page.wait_for_timeout(1000)
-    # expect(page.locator("//div[@class='styles_comment__7_U0V']")).to_be_visible()
-    # expect(page.locator("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")).to_be_visible()
-    # expect(page.locator("//div[@class='styles_summary-content__3IqCA']")).to_be_visible()
+    expect(page.locator("//div[@class='styles_comment__7_U0V']")).to_be_visible()
+    expect(page.locator("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")).to_be_visible()
+    expect(page.locator("//div[@class='styles_summary-content__3IqCA']")).to_be_visible()
     # page.click("//button[@class='btn dark narrow skip-min-width skip-padding v-space styles_primary-color__3fKw9']")
     # page.wait_for_timeout(2000)
     # expect(page.locator("//div[@class='styles_title__14p_x']")).to_be_visible()
