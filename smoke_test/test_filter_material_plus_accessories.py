@@ -13,7 +13,7 @@ def search_filter(playwright: Playwright) -> None:
     page.hover(".styles_accordion__1nYPJ")    # open sidebar menu
     page.wait_for_timeout(1000)
     categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()   # open categories
-    accessories = categories[7]
+    accessories = categories[6]
     accessories.click()
 
     sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()   # open sub category

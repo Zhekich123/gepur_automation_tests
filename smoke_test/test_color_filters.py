@@ -20,7 +20,7 @@ def search_filter(playwright: Playwright) -> None:
     dresses.click()
     page.wait_for_timeout(1000)
 
-    page.click("//span[@class='text']")  # close pop-up menu
+    # page.click("//span[@class='text']")  # close pop-up menu
 
     page.evaluate('window.scrollBy(0, 200)')
     page.wait_for_timeout(1000)

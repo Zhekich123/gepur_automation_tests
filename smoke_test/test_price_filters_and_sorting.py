@@ -20,7 +20,7 @@ def search_filter(playwright: Playwright) -> None:
     tops.click()
     page.wait_for_timeout(1000)
 
-    page.click("//span[@class='text']")  # close pop-up menu
+    # page.click("//span[@class='text']")  # close pop-up menu
 
     page.click("//div[@class='styles_more-filters__1bNkD']")      # All filters button
     page.wait_for_timeout(500)

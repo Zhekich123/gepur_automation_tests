@@ -20,7 +20,7 @@ def search_filter(playwright: Playwright) -> None:
     see_all.click()
     page.wait_for_timeout(1000)
 
-    page.click("//span[@class='text']")
+    # page.click("//span[@class='text']")
 
     page.evaluate('window.scrollBy(0, 200)')
     page.wait_for_timeout(1000)
@@ -50,7 +50,7 @@ def search_filter(playwright: Playwright) -> None:
     page.wait_for_timeout(1000)
 
     collection_list = page.locator("//div[@class='styles_chip__1pd1y']").all()   # independent sub_filter
-    independent = collection_list[150]
+    independent = collection_list[153]
     independent.click()
     page.wait_for_timeout(1000)
 
