@@ -23,7 +23,7 @@ def shopping_cart(playwright: Playwright) -> None:
     page.goto("https://gepur.com/uk")
 
     phone = ("+380738983498")
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_add_product_and_checkot_user.zip")
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_add_product_and_checkot_user.zip")
 
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")   #open sidebar memu

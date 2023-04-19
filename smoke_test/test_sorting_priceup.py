@@ -8,7 +8,7 @@ def search_filter(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/test_sorting_priceup.zip")
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_sorting_priceup.zip")
 
     page.hover(".styles_accordion__1nYPJ")  # open sidebar menu
     categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()  # list of categories
