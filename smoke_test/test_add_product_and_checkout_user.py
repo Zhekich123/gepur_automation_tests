@@ -48,7 +48,7 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     phone = ("+380738983498")
     email = ("test14364accounnt@gmail.com")
     password = ("Test1234567890")
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_add_product_and_checkot_user.zip")
+    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_add_product_and_checkout_user.zip")
 
 
     page.click("//a[@class='service_button account_icon']")
