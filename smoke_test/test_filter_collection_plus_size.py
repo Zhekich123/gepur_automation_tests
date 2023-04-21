@@ -11,15 +11,12 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_filter_collection_plus_size.zip")
 
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()      # list of categories
-    clothes = categories[1]   # odezhda sub menu
-    clothes.click()
-
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()   # list of sub categories
-    see_all = sub_category[0]  # see all button
-    see_all.click()
+    page.click("a[href^='/uk/catalog/odezhda']")
+    show_all = page.locator("a[href^='/uk/catalog/odezhda']").nth(1)
+    show_all.click()
     page.wait_for_timeout(1000)
 
+    page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")
 
     page.evaluate('window.scrollBy(0, 200)')
@@ -30,6 +27,9 @@ def search_filter(playwright: Playwright) -> None:
     page.wait_for_timeout(1000)
 
 
+    # size_xs = page.locator("a[href^='/uk/catalog/platya?filters=size:xs']").all()
+    # size = size_xs[1]
+    # expect(size).to_be_visible()
     sizes = page.locator("//div[@class='styles_chip__1pd1y styles_uppercase__3TPaN']").all()
     size_xs = sizes[15]     # sizes choosing
     size_xs.click()
@@ -41,7 +41,6 @@ def search_filter(playwright: Playwright) -> None:
 
 
     page.click("//div[@class='styles_more-filters__1bNkD']")  # All filters button
-    page.wait_for_timeout(500)
 
     page.wait_for_timeout(1000)
     filters = page.locator("//div[@class='styles_filter-title__VyNld']").all()  # list of filters
@@ -49,11 +48,8 @@ def search_filter(playwright: Playwright) -> None:
     collection.click()
     page.wait_for_timeout(1000)
 
-    collection_list = page.locator("//div[@class='styles_chip__1pd1y']").all()   # independent sub_filter
-    independent = collection_list[153]
-    independent.click()
+    page.click("a[href^='/uk/catalog/odezhda?filters=collection:nezalezhna']")
     page.wait_for_timeout(1000)
-
 
     show_buttons = page.locator("//button[@class='btn dark md']").all()  # accept button
     button = show_buttons[7]
