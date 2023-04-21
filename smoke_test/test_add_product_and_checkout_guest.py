@@ -27,13 +27,11 @@ def shopping_cart(playwright: Playwright) -> None:
 
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")   #open sidebar memu
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()
-    accessories = categories[6]
-    accessories.click()
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()
-    glasses = sub_category[27]
-    glasses.click()
-    page.wait_for_timeout(1000)
+    page.click("a[href^='/uk/catalog/aksessuary']")
+    page.click("a[href^='/uk/catalog/ochki']")
+
+    # page.click("//div[@class='promo-banner__close']")  # close banner
+
     page.click("//div[@class='styles_product-slider__1D33N styles_expand-4__1CK38']")
     page.click("//button[@class='btn dark narrow skip-min-width v-space-md']")
     page.wait_for_timeout(1000)
