@@ -67,14 +67,11 @@ def add_product_and_checkout(playwright: Playwright) -> None:
 
     page.hover(".styles_accordion__1nYPJ")
     page.wait_for_timeout(1000)
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()
-    accessories = categories[6]
-    accessories.click()
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()
-    glasses = sub_category[27]
-    glasses.click()
-    page.wait_for_timeout(1000)
+    page.hover(".styles_accordion__1nYPJ")  # open sidebar memu
+    page.click("a[href^='/uk/catalog/aksessuary']")  # choose glasses category
+    page.click("a[href^='/uk/catalog/ochki']")
 
+    # page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")
 
     page.click("//div[@class='styles_product-slider__1D33N styles_expand-4__1CK38']")
