@@ -12,14 +12,12 @@ def search_filter(playwright: Playwright) -> None:
 
     page.hover(".styles_accordion__1nYPJ")    # open sidebar menu
     page.wait_for_timeout(1000)
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()   # open categories
-    accessories = categories[6]
-    accessories.click()
+    page.click("a[href^='/uk/catalog/aksessuary']")
+    show_all_accessories = page.locator("a[href^='/uk/catalog/aksessuary']").nth(1)
+    show_all_accessories.click()
 
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()   # open sub category
-    show_all = sub_category[23]
-    show_all.click()
-
+    page.click("//div[@class='promo-banner__close']")   # close banner
+    
     page.click("//div[@class='styles_more-filters__1bNkD']")  # All filters button
     page.wait_for_timeout(500)
 
@@ -28,9 +26,7 @@ def search_filter(playwright: Playwright) -> None:
     material.click()
     page.wait_for_timeout(500)
 
-    sub_filters = page.locator("//div[@class='styles_chip__1pd1y']").all()   # choosing filter
-    jewelry_alloy = sub_filters[1]
-    jewelry_alloy.click()
+    page.click("a[href^='/uk/catalog/aksessuary?filters=materials:bizhuternyj-splav']") # filter
 
     show_buttons = page.locator("//button[@class='btn dark md']").all()  # accept button
     button = show_buttons[4]
