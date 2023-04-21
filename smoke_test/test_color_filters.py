@@ -11,15 +11,11 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_color_filters.zip")
 
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()  # list of categories
-    clothes = categories[1]   # odezhda sub menu
-    clothes.click()
-
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all() # list of sub categories
-    dresses = sub_category[2]  # dresses section
-    dresses.click()
+    page.click("a[href^='/uk/catalog/odezhda']")
+    page.click("a[href^='/uk/catalog/platya']")
     page.wait_for_timeout(1000)
 
+    page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")  # close pop-up menu
 
     page.evaluate('window.scrollBy(0, 200)')
@@ -29,10 +25,7 @@ def search_filter(playwright: Playwright) -> None:
     colors.click()
     page.wait_for_timeout(1000)
 
-
-    list_of_colors = page.locator("//div[@class='styles_chip__1pd1y']").all()  # list of colors
-    color_black = list_of_colors[19]
-    color_black.click()
+    page.click("a[href^='/uk/catalog/platya?filters=color:chernyj']")
     page.wait_for_timeout(1000)
 
     show_buttons = page.locator("//button[@class='btn dark md']").all()  # accept button
