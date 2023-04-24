@@ -11,14 +11,14 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_sorting_priceup.zip")
 
     page.hover(".styles_accordion__1nYPJ")  # open sidebar menu
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()  # list of categories
-    novelties = categories[0]  # novelties
+    novelties = page.locator("a[href^='/uk/catalog/novinki']")  # novelties
 
     if novelties.is_visible():
         novelties.click()
     else:
         page.goto("https://gepur.com/uk/catalog/novinki")
 
+    # page.click("//div[@class='promo-banner__close']")  # close banner
     page.click("//div[@class='styles_s-filter__3N8-7']")    # sorting filter
 
     sorting_filters = page.locator("//li[@class='styles_item__1Gxg6']").all()  # from cheapest to expensive filter
