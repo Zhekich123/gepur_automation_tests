@@ -11,15 +11,13 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_price_filters_and_sorting.zip")
 
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()      # list of categories
-    clothes = categories[1]   # odezhda sub menu
-    clothes.click()
+    page.click("a[href^='/uk/catalog/odezhda']")      # odezhda sub menu
 
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()     # list of sub categories
-    tops = sub_category[3]  # tops section
-    tops.click()
+    page.click("a[href^='/uk/catalog/futbolki-majki']")  # tops category
+
     page.wait_for_timeout(1000)
 
+    page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")  # close pop-up menu
 
     page.click("//div[@class='styles_more-filters__1bNkD']")      # All filters button
