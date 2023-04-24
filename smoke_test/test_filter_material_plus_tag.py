@@ -11,24 +11,19 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_filter_material_plus_tag.zip")
 
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
-    categories = page.locator("//a[@class='styles_panel-item__2qFev']").all()      # list of categories
-    clothes = categories[1]   # odezhda sub menu
-    clothes.click()
+    page.click("a[href^='/uk/catalog/odezhda']")
+    page.click("a[href^='/uk/catalog/bluzy-rubashki']")
 
-    sub_category = page.locator("//a[@class='styles_list_item__2msD6']").all()   # list of sub categories
-    shirts = sub_category[8]  # shirts section
-    shirts.click()
     page.wait_for_timeout(1000)
 
+    page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")   # close pop-up menu
 
-    tags = page.locator("//a[@class='styles_tag-item__2cwSh']").all()
-    cotton_tag = tags[1]     # choose tag
-    cotton_tag.click()
-    page.wait_for_timeout(2000)
+    page.click("a[href^='/uk/catalog/bluzy-rubashki?filters=materials:proshva']")   # tag proshva
+
+    # page.wait_for_timeout(2000)
 
     page.click("//div[@class='styles_more-filters__1bNkD']")  # All filters button
-    page.wait_for_timeout(500)
 
     page.wait_for_timeout(1000)
     filters = page.locator("//div[@class='clearfix styles_filter-select__3qjY5']").all()   # list of filters
