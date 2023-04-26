@@ -11,16 +11,19 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_search.zip")
 
     page.click("//div[@class='styles_search__3RqsL']")
-    search = page.locator("//input[@type='search']")
-    search.fill("№%:,")
-    page.click("//button[@type='submit']")
-    not_found_message = page.locator("//div[@class='styles_not-found__1z_PQ']")
-    expect(not_found_message).to_be_visible()
-    page.locator("//input[@class='styles_text-search__2FsJ9']").clear()
-    page.fill("//input[@class='styles_text-search__2FsJ9']", "Dress")
-    page.keyboard.press("Enter")
+    search_modal = page.locator("//div[@class='styles_search-header__4cYGA styles_show__24tgV']")
 
-    page.wait_for_timeout(5000)
+    expect(search_modal).to_be_visible()
+    search = page.locator("//input[@type='search']")
+
+    search.fill("Платье")
+    page.click("//button[@type='submit']")
+
+    items = page.locator("a[href^='/product/plate']").all()
+    dress = items[1]
+    expect(dress).to_be_visible()
+
+    page.wait_for_timeout(1000)
 
 
 
