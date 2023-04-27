@@ -6,7 +6,7 @@ def search_filter(playwright: Playwright) -> None:
     context = browser.new_context()
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
-    page.goto("https://debug.gepur.org/")
+    page.goto("https://gepur.com/uk")
 
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_search.zip")
 
@@ -16,10 +16,10 @@ def search_filter(playwright: Playwright) -> None:
     expect(search_modal).to_be_visible()
     search = page.locator("//input[@type='search']")
 
-    search.fill("100331")
+    search.fill("43670")
     page.click("//button[@type='submit']")
 
-    dress = page.locator("a[href^='/product/plate-100331']").nth(0)
+    dress = page.locator("a[href^='/uk/product/plate-43670']").nth(0)
     expect(dress).to_be_visible()
 
     page.wait_for_timeout(1000)
