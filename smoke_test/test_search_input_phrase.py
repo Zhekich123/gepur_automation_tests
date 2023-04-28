@@ -11,26 +11,24 @@ def search_filter(playwright: Playwright) -> None:
     report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_search.zip")
 
     page.click("//div[@class='styles_search__3RqsL']")
-
     search_modal = page.locator("//div[@class='styles_search-header__4cYGA styles_show__24tgV']")
-    expect(search_modal).to_be_visible()
 
+    expect(search_modal).to_be_visible()
     search = page.locator("//input[@type='search']")
-    search.fill("Платььье")
+
+    search.fill("Джинсовий сарафан")
     page.click("//button[@type='submit']")
 
-    not_found_message = page.locator("//div[@class='styles_not-found__1z_PQ']")
+    page.wait_for_timeout(1000)
 
-    expect(not_found_message).to_be_visible()
+    dress_text = page.locator("//span[@class='styles_g-product-name__225CN']").nth(0).inner_text()
 
-    text_in_message = page.locator("//div[@class='styles_not-found__1z_PQ']").inner_text()
-
-    if "Платььье" in text_in_message:
-        print("\nMessage is right")
+    if "Джинсовий" in dress_text and "сарафан" in dress_text:
+        print("\nSearch is right")
     else:
-        print("\nMessage is wrong or not find")
+        print("\nSearch is wrong")
 
-
+    page.wait_for_timeout(1000)
 
 
     context.tracing.stop(path=report_path)

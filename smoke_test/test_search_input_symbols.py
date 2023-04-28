@@ -17,8 +17,15 @@ def search_filter(playwright: Playwright) -> None:
     search.fill("@№%#$!")
     page.click("//button[@type='submit']")
     not_found_message = page.locator("//div[@class='styles_not-found__1z_PQ']")
+
     expect(not_found_message).to_be_visible()
-    page.wait_for_timeout(1000)
+
+    text_in_message = page.locator("//div[@class='styles_not-found__1z_PQ']").inner_text()
+
+    if "@№%" in text_in_message:
+        print("\nMessage is right")
+    else:
+        print("\nMessage is wrong or not find")
 
 
 
