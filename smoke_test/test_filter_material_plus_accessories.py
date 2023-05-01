@@ -16,7 +16,7 @@ def search_filter(playwright: Playwright) -> None:
     show_all_accessories = page.locator("a[href^='/uk/catalog/aksessuary']").nth(1)
     show_all_accessories.click()
 
-    page.click("//div[@class='promo-banner__close']")   # close banner
+    # page.click("//div[@class='promo-banner__close']")   # close banner
     
     page.click("//div[@class='styles_more-filters__1bNkD']")  # All filters button
     page.wait_for_timeout(500)

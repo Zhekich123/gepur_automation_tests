@@ -16,7 +16,7 @@ def search_filter(playwright: Playwright) -> None:
     show_all.click()
     page.wait_for_timeout(1000)
 
-    page.click("//div[@class='promo-banner__close']")  # close banner
+    # page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")
 
     page.evaluate('window.scrollBy(0, 200)')

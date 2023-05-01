@@ -16,7 +16,7 @@ def search_filter(playwright: Playwright) -> None:
 
     page.wait_for_timeout(1000)
 
-    page.click("//div[@class='promo-banner__close']")  # close banner
+    # page.click("//div[@class='promo-banner__close']")  # close banner
     # page.click("//span[@class='text']")   # close pop-up menu
 
     page.click("a[href^='/uk/catalog/bluzy-rubashki?filters=materials:proshva']")   # tag proshva
