@@ -8,8 +8,6 @@ def search_filter(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_color_filters.zip")
-
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
     page.click("a[href^='/uk/catalog/odezhda']")
     page.click("a[href^='/uk/catalog/platya']")
@@ -42,7 +40,7 @@ def search_filter(playwright: Playwright) -> None:
     choose_color = black_color[0]
     expect(choose_color).to_be_visible()
 
-    context.tracing.stop(path=report_path)
+    context.tracing.stop(path=global_report_path)
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
         search_filter(playwright)

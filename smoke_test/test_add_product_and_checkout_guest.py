@@ -23,7 +23,6 @@ def shopping_cart(playwright: Playwright) -> None:
     page.goto("https://gepur.com/uk")
 
     phone = ("+380738983498")
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_add_product_and_checkot_user.zip")
 
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")   #open sidebar memu
@@ -48,7 +47,7 @@ def shopping_cart(playwright: Playwright) -> None:
     # expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
-    context.tracing.stop(path=report_path)
+    context.tracing.stop(path=global_report_path)
 
 def test_choosing_product_and_add_to_cart():
     with sync_playwright() as playwright:

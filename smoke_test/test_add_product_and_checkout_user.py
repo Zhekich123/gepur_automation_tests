@@ -48,8 +48,6 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     phone = ("+380738983498")
     email = ("test14364accounnt@gmail.com")
     password = ("Test1234567890")
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_add_product_and_checkout_user.zip")
-
 
     page.click("//a[@class='service_button account_icon']")
     expect(page.locator("//input[@name='phoneOrEmail']")).to_be_visible()
@@ -133,7 +131,7 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     # page.wait_for_timeout(2000)
     # expect(page.locator("//div[@class='styles_title__14p_x']")).to_be_visible()
 
-    context.tracing.stop(path=report_path)
+    context.tracing.stop(path=global_report_path)
     context.clear_cookies()
 def test_add_product_and_checkout_user():
     with sync_playwright() as playwright:

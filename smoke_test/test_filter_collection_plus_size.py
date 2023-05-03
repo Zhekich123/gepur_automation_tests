@@ -8,8 +8,6 @@ def search_filter(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_filter_collection_plus_size.zip")
-
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
     page.click("a[href^='/uk/catalog/odezhda']")
     show_all = page.locator("a[href^='/uk/catalog/odezhda']").nth(1)
@@ -67,7 +65,7 @@ def search_filter(playwright: Playwright) -> None:
     expect(button_xs).to_be_enabled()
     page.wait_for_timeout(1000)
 
-    context.tracing.stop(path=report_path)
+    context.tracing.stop(path=global_report_path)
 
 
 def test_search_product_and_filter():

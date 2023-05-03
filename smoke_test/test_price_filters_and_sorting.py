@@ -8,8 +8,6 @@ def search_filter(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_price_filters_and_sorting.zip")
-
     page.hover(".styles_accordion__1nYPJ")   # open sidebar menu
     page.click("a[href^='/uk/catalog/odezhda']")      # odezhda sub menu
 
@@ -55,7 +53,7 @@ def search_filter(playwright: Playwright) -> None:
     else:
         print("\nFilter is working wrong")
 
-    context.tracing.stop(path=report_path)
+    context.tracing.stop(path=global_report_path)
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
         search_filter(playwright)

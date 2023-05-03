@@ -8,9 +8,8 @@ def search_filter(playwright: Playwright) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    report_path = ("/Users/zhekich/PycharmProjects/gepur_tests/gepur_automation_testing/gepur_automation_tests/reports/test_sorting_priceup.zip")
-
     page.hover(".styles_accordion__1nYPJ")  # open sidebar menu
+    page.wait_for_timeout(1000)
     novelties = page.locator("a[href^='/uk/catalog/novinki']")  # novelties
 
     if novelties.is_visible():
@@ -41,7 +40,7 @@ def search_filter(playwright: Playwright) -> None:
 
         prev_price_value = price_value
 
-    context.tracing.stop(path=report_path)
+    context.tracing.stop(path=global_report_path)
 
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
