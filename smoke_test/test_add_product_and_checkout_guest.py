@@ -15,7 +15,7 @@ from imports import *
     And user can click "Купити в 1 клік"
     Then user can see the message "Access icon"  '''
 
-def shopping_cart(playwright: Playwright) -> None:
+def shopping_cart(playwright: Playwright, test_name: str) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
@@ -47,8 +47,11 @@ def shopping_cart(playwright: Playwright) -> None:
     # expect(page.locator(".styles_icon__WEE7_")).to_be_visible()
     page.wait_for_timeout(1000)
 
+    global_report_path = get_report_path(test_name)
     context.tracing.stop(path=global_report_path)
 
 def test_choosing_product_and_add_to_cart():
     with sync_playwright() as playwright:
-        shopping_cart(playwright)
+        test_name = "test_add_product_and_checkout_guest"
+        get_report_path(test_name)
+        shopping_cart(playwright, test_name)

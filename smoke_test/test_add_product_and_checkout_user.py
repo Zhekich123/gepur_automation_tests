@@ -38,7 +38,7 @@ from imports import *
     And user can click button "back" in browser
     Then user can see the bill '''
 
-def add_product_and_checkout(playwright: Playwright) -> None:
+def add_product_and_checkout(playwright: Playwright, test_name: str) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
@@ -131,8 +131,10 @@ def add_product_and_checkout(playwright: Playwright) -> None:
     # page.wait_for_timeout(2000)
     # expect(page.locator("//div[@class='styles_title__14p_x']")).to_be_visible()
 
+    global_report_path = get_report_path(test_name)
     context.tracing.stop(path=global_report_path)
-    context.clear_cookies()
 def test_add_product_and_checkout_user():
     with sync_playwright() as playwright:
-        add_product_and_checkout(playwright)
+        test_name = "test_add_product_and_checkout_user"
+        get_report_path(test_name)
+        add_product_and_checkout(playwright, test_name)

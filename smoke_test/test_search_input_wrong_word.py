@@ -1,7 +1,7 @@
 from imports import *
 
 
-def search_filter(playwright: Playwright) -> None:
+def search_filter(playwright: Playwright, test_name: str) -> None:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
@@ -28,12 +28,12 @@ def search_filter(playwright: Playwright) -> None:
     else:
         print("\nMessage is wrong or not find")
 
-
-
-
+    global_report_path = get_report_path(test_name)
     context.tracing.stop(path=global_report_path)
 
 
 def test_search_product_and_filter():
     with sync_playwright() as playwright:
-        search_filter(playwright)
+        test_name = "test_search_input_wrong_word"
+        get_report_path(test_name)
+        search_filter(playwright, test_name)
