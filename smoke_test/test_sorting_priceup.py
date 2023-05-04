@@ -9,13 +9,12 @@ def search_filter(playwright: Playwright, test_name: str) -> None:
     page.goto("https://gepur.com/uk")
 
     page.hover(".styles_accordion__1nYPJ")  # open sidebar menu
-    page.wait_for_timeout(1000)
-    novelties = page.locator("a[href^='/uk/catalog/novinki']")  # novelties
+    page.click("a[href^='/uk/catalog/novinki']")  # novelties
 
-    if novelties.is_visible():
-        novelties.click()
-    else:
-        page.goto("https://gepur.com/uk/catalog/novinki")
+    # if novelties.is_visible():
+    #     novelties.click()
+    # else:
+    #     page.goto("https://gepur.com/uk/catalog/novinki")
 
     # page.click("//div[@class='promo-banner__close']")  # close banner
     page.click("//div[@class='styles_s-filter__3N8-7']")    # sorting filter
