@@ -25,13 +25,14 @@ def search_filter(playwright: Playwright, test_name: str) -> None:
     page.wait_for_timeout(1000)
 
 
-    # size_xs = page.locator("a[href^='/uk/catalog/platya?filters=size:xs']").all()
-    # size = size_xs[1]
-    # expect(size).to_be_visible()
-    sizes = page.locator("//div[@class='styles_chip__1pd1y styles_uppercase__3TPaN']").all()
-    size_xs = sizes[15]     # sizes choosing
-    size_xs.click()
-    size_xs.click()
+    size_xs = page.locator("a[href^='/uk/catalog/odezhda?filters=size:xs']").all()
+    size = size_xs[1]
+    expect(size).to_be_visible()
+    size.click()
+    # sizes = page.locator("//div[@class='styles_chip__1pd1y styles_uppercase__3TPaN']").all()
+    # size_xs = sizes[15]     # sizes choosing
+    # size_xs.click()
+    # size_xs.click()
 
     show_buttons = page.locator("//button[@class='btn dark md']").all()  # accept button
     button = show_buttons[0]
