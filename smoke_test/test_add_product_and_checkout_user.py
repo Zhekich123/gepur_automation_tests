@@ -110,10 +110,11 @@ def add_product_and_checkout(playwright: Playwright, test_name: str) -> None:
     page.wait_for_timeout(1000)
 
     expect(page.locator("//div[@class='styles_address__19pO3 v-space']")).to_be_visible()
-    ul_delivery_and_payment_section = page.locator("//ul[@class='styles_menu__2rwEx']").all()
-    select_section = ul_delivery_and_payment_section[1]
-    option = select_section.locator("li:nth-child(3)")
-    option.click()
+
+    payment_menu = page.locator("//div[@class='styles_section-title__1PWpd }']").nth(1)
+    expect(payment_menu).to_be_visible()
+    online_payment = page.locator("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")
+    online_payment.click()
 
     page.click("//div[@class='styles_cap__1cn_6']")
     page.click("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")
@@ -129,7 +130,14 @@ def add_product_and_checkout(playwright: Playwright, test_name: str) -> None:
     expect(page.locator("//div[@class='styles_summary-content__3IqCA']")).to_be_visible()
     # page.click("//button[@class='btn dark narrow skip-min-width skip-padding v-space styles_primary-color__3fKw9']")
     # page.wait_for_timeout(2000)
-    # expect(page.locator("//div[@class='styles_title__14p_x']")).to_be_visible()
+
+    # payment_content_header = page.locator("//div[@class='payment-form-title']")
+    # expect(payment_content_header).to_be_visible()
+
+    # page.go_back()
+    #
+    # order_details = page.locator("//div[@class='styles_content__38zNh v-space-md']")
+    # expect(order_details).to_be_visible()
 
     global_report_path = get_report_path(test_name)
     context.tracing.stop(path=global_report_path)
