@@ -43,7 +43,7 @@ def search_filter(playwright: Playwright, test_name: str) -> None:
 
     page.wait_for_timeout(1000)
     filters = page.locator("//div[@class='styles_filter-title__VyNld']").all()  # list of filters
-    collection = filters[7]
+    collection = filters[2]  # nezalezhna collection filters number
     collection.click()
     page.wait_for_timeout(1000)
 
@@ -51,7 +51,7 @@ def search_filter(playwright: Playwright, test_name: str) -> None:
     page.wait_for_timeout(1000)
 
     show_buttons = page.locator("//button[@class='btn dark md']").all()  # accept button
-    button = show_buttons[7]
+    button = show_buttons[2]  #collection number
     button.click()
     page.wait_for_timeout(1000)
 

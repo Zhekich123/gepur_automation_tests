@@ -22,7 +22,7 @@ def shopping_cart(playwright: Playwright, test_name: str) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    phone = ("+380738983498")
+    phone = ("+380033346641")
 
     # page.click("//div[@class='modal-subscribe-close-button']")
     page.hover(".styles_accordion__1nYPJ")   #open sidebar memu

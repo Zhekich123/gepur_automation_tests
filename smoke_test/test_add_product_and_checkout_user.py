@@ -45,9 +45,9 @@ def add_product_and_checkout(playwright: Playwright, test_name: str) -> None:
     page = context.new_page()
     page.goto("https://gepur.com/uk")
 
-    phone = ("+380738983498")
-    email = ("test14364accounnt@gmail.com")
-    password = ("Test1234567890")
+    phone = ("+380933346641")
+    email = ("bolsunovska.daria@gmail.com")
+    password = ("92e3579aSun")
 
     page.click("//a[@class='service_button account_icon']")
     expect(page.locator("//input[@name='phoneOrEmail']")).to_be_visible()
@@ -121,13 +121,14 @@ def add_product_and_checkout(playwright: Playwright, test_name: str) -> None:
     page.click("//div[@class='styles_label__2RfoE']")
     expect(page.locator("//div[@class='styles_label__uUxAi']")).to_be_visible()
     page.wait_for_timeout(1000)
-    page.fill("//textarea[@maxlength='1000']", "Тестове замовлення, IT відділ, не передзванюйте будь ласка")
+    page.fill("//textarea[@maxlength='1000']", "Тестове замовлення, IT відділ, не передзвонюйте будь ласка")
     page.wait_for_timeout(1000)
     page.click("//button[@class='btn narrow skip-min-width skip-padding']")
     page.wait_for_timeout(1000)
     expect(page.locator("//div[@class='styles_comment__7_U0V']")).to_be_visible()
     expect(page.locator("//div[@class='styles_wrap__1lgHX styles_selected__GWoli']")).to_be_visible()
     expect(page.locator("//div[@class='styles_summary-content__3IqCA']")).to_be_visible()
+
     # page.click("//button[@class='btn dark narrow skip-min-width skip-padding v-space styles_primary-color__3fKw9']")
     # page.wait_for_timeout(2000)
 
